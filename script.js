@@ -29,8 +29,7 @@ function init() {
     canvas.addEventListener("mouseout", function (e) {
         findxy('out', e)
     }, false);
-    
-    
+
     document.getElementById("clr").addEventListener("click", function() {
         const context = canvas.getContext('2d');
 
@@ -39,7 +38,35 @@ function init() {
        var myobj = document.getElementById("hey");
        myobj.remove();
       });
+      document.getElementById("btn").addEventListener("click", function() {
+      var text = document.getElementById("hey").innerText;
+      var blob = new Blob([text],{type: "text/plain"}); 
+ 
+			// download the file: 
+			download(blob,"text-file.txt"); 
+
+    });
+
 }
+
+function download(blob,name) { 
+    var url = URL.createObjectURL(blob), 
+        div = document.createElement("div"), 
+        anch = document.createElement("a"); 
+
+    document.body.appendChild(div); 
+    div.appendChild(anch); 
+
+    anch.innerHTML = "&nbsp;"; 
+    div.style.width = "0"; 
+    div.style.height = "0"; 
+    anch.href = url; 
+    anch.download = name; 
+     
+    var ev = new MouseEvent("click",{}); 
+    anch.dispatchEvent(ev); 
+    document.body.removeChild(div); 
+} 
 
 
 
@@ -55,12 +82,12 @@ function draw() {
 
 
 
-function save() {
+/* function save() {
     document.getElementById("canvasimg").style.border = "2px solid";
     var dataURL = canvas.toDataURL();
     document.getElementById("canvasimg").src = dataURL;
     document.getElementById("canvasimg").style.display = "inline";
-}
+} */
 
 function findxy(res, e) {
     if (res == 'down') {
