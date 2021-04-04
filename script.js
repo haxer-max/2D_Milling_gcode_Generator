@@ -96,10 +96,12 @@ function findxy(res, e) {
         prevY = currY;
         currX = e.clientX - canvas.offsetLeft;
         currY = e.clientY - canvas.offsetTop;
-        var node = document.createElement("P");
-        var textnode = document.createTextNode("G00 X"+ currX+ " Y"+ (400-currY));         // Create a text node
-        node.appendChild(textnode);                              // Append the text to <li>
+        var node = document.createElement("span");
+        var textnode = document.createTextNode("G00 X"+ currX+ " Y"+ (400-currY));       
+        node.appendChild(textnode);                           
         document.getElementById("hey").appendChild(node);
+        var node2 = document.createElement("br");
+        document.getElementById("hey").appendChild(node2);
         flag = true;
         dot_flag = true;
         if (dot_flag) {
@@ -113,20 +115,24 @@ function findxy(res, e) {
         }
         coordlist.push(("G01 X"+ currX+ " Y"+ (400-currY)))
         console.log("G01 X"+ currX+ " Y"+ (400-currY))
-        var node = document.createElement("P");
-                var textnode = document.createTextNode("G01 X"+ currX+ " Y"+ (400-currY)+" Z-10");         // Create a text node
-                node.appendChild(textnode);                              // Append the text to <li>
+        var node = document.createElement("span");
+                var textnode = document.createTextNode("G01 X"+ currX+ " Y"+ (400-currY)+" Z-10");       
+                node.appendChild(textnode);              
                 document.getElementById("hey").appendChild(node);
+                var node2 = document.createElement("br");
+                document.getElementById("hey").appendChild(node2);
     }
     if (res == 'up' || res == "out") {
         //alert("adljnladcn")
         if(flag===true){
             prevX = currX;
             prevY = currY;
-            var node = document.createElement("P");
+            var node = document.createElement("span");
             var textnode = document.createTextNode("G01 X"+ currX+ " Y"+ (400-currY)+" Z5");
-            node.appendChild(textnode);                              // Append the text to <li>
+            node.appendChild(textnode);                          
             document.getElementById("hey").appendChild(node);
+            var node2 = document.createElement("br");
+            document.getElementById("hey").appendChild(node2);
         }
         flag = false;
     }
@@ -140,10 +146,12 @@ function findxy(res, e) {
                 draw();
                 coordlist.push([currX,(400-currY)])
                 console.log("G01 X"+ currX+ " Y"+ (400-currY))
-                var node = document.createElement("P");
-                var textnode = document.createTextNode("G01 X"+ currX+ " Y"+ (400-currY));         // Create a text node
-                node.appendChild(textnode);                              // Append the text to <li>
+                var node = document.createElement("span");
+                var textnode = document.createTextNode("G01 X"+ currX+ " Y"+ (400-currY));
+                node.appendChild(textnode); 
                 document.getElementById("hey").appendChild(node);
+                var node2 = document.createElement("br");
+                document.getElementById("hey").appendChild(node2);
             }
             
         }
