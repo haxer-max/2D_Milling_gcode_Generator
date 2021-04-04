@@ -29,6 +29,16 @@ function init() {
     canvas.addEventListener("mouseout", function (e) {
         findxy('out', e)
     }, false);
+    
+    
+    document.getElementById("clr").addEventListener("click", function() {
+        const context = canvas.getContext('2d');
+
+       context.clearRect(0, 0, canvas.width, canvas.height);
+       console.clear();
+       var myobj = document.getElementById("hey");
+       myobj.remove();
+      });
 }
 
 
