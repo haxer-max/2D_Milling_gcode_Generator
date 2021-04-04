@@ -35,8 +35,8 @@ function init() {
 
        context.clearRect(0, 0, canvas.width, canvas.height);
        console.clear();
-       var myobj = document.getElementById("hey");
-       myobj.remove();
+       document.getElementById("hey").innerHTML="";
+       console.clear();
       });
       document.getElementById("btn").addEventListener("click", function() {
       var text = document.getElementById("hey").innerText;
