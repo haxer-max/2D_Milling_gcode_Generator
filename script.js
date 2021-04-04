@@ -52,11 +52,15 @@ const coordlist = [];
     
     function findxy(res, e) {
         if (res == 'down') {
+            
             prevX = currX;
             prevY = currY;
             currX = e.clientX - canvas.offsetLeft;
             currY = e.clientY - canvas.offsetTop;
-    
+            var node = document.createElement("P");
+            var textnode = document.createTextNode("G00 X"+ currX+ " Y"+ (400-currY));         // Create a text node
+            node.appendChild(textnode);                              // Append the text to <li>
+            document.getElementById("hey").appendChild(node);
             flag = true;
             dot_flag = true;
             if (dot_flag) {
@@ -68,14 +72,18 @@ const coordlist = [];
                 //ctx.closePath();
                 dot_flag = false;
             }
-            coordlist.push([currX,(400-currY)])
-            console.log("G01 X"+ currX+ " Y"+ currY)
+            coordlist.push(("G01 X"+ currX+ " Y"+ (400-currY)))
+            console.log("G01 X"+ currX+ " Y"+ (400-currY))
             var node = document.createElement("P");
                     var textnode = document.createTextNode("G01 X"+ currX+ " Y"+ (400-currY));         // Create a text node
                     node.appendChild(textnode);                              // Append the text to <li>
                     document.getElementById("hey").appendChild(node);
         }
         if (res == 'up' || res == "out") {
+            if(flag===true){
+                prevX = currX;
+                prevY = currY;
+            }
             flag = false;
         }
         if (res == 'move') {
