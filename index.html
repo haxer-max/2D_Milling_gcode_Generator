@@ -12,6 +12,7 @@
     <script src="script.js"></script>
 
 <body onload="init()">
+    
     <div id="fly-in" style="display: block;">  
         <div>G-CODE GENERATOR</div>
         <div>CREATED BY<span></span></div>
@@ -21,10 +22,9 @@
         <!--div>Lets Go<span>BELOW</span></div-->
         <br>
         <br>
-       
-        
         <button class="button button1" onclick="letsgo()">Lets Goooo</button></div>
     </div>
+
     <div id="config" align=center style="display: none; margin-top: 90px;">
         <table class="maininp">
             <tr>
@@ -47,15 +47,14 @@
 
     <div id="drawing-page" style="display: none; width: 95%; margin-top:5%;">
         <div style="float: left;">
-            <canvas id="can" width="500" height="500"
-                style=" margin-left: 10%; left:50%;border:2px solid; box-shadow: 0px 0px 50px silver; border-radius: 2px; border-color: powderblue; background-color:gray; "></canvas>
+            <canvas id="can" width="500" height="500"></canvas>
         </div>
         
         <div style="float: right ;">
             <input type="button" class="btn btn-outline-info my-2 my-sm-0" value="download Gcode" id="btn" size="30">
             <input type="button" class="btn btn-outline-danger my-2 my-sm-0" value="clear" id="clr" size="23">
             <br><br>
-            <div id="hey" style="border-radius: 10px; background-color: rgb(51, 51, 51); overflow-y: auto;height: 200px; font-size: small; padding-left:20px ; text-align: left; overflow-x: hidden;">
+            <div id="hey" >
                 G21 G40 <br>M03 S500<br>M06 T01<br>G00 X2 Y3 F70<br>
             </div>
         </div>

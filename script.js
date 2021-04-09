@@ -164,7 +164,6 @@ function makecode(str) {
 function letsgo() {
     document.getElementById("fly-in").style.display = "none";
     document.getElementById("config").style.display = "block";
-    //document.getElementById("drawing-page").style.display = "block";
 }
 function letsdraw() {
     ssize=Number(document.getElementById("side").value);
