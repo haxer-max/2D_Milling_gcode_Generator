@@ -7,7 +7,10 @@ let canvas,
     currY = 0,
     dot_flag = false,
     zmax = 5,
-    zdepth = -5;
+    zdepth = -5
+    origx=0,
+    origy=0;
+    ssize=500;
 
 const coordlist = [];
 var x = "black",
@@ -48,12 +51,15 @@ function init() {
         false
     );
 
-    document.getElementById("clr").addEventListener("click", clear());
+    document.getElementById("clr").addEventListener("click", clear);
 
     document.getElementById("btn").addEventListener("click", function () {
+        //makecode("M05 M30");
         var text = document.getElementById("hey").innerText;
+        text+="M05 M30"
+        console.log(text)
         var blob = new Blob([text], { type: "text/plain" });
-        download(blob, "code.gcode");
+        download(blob, "gcode.txt");
     });
 }
 
@@ -61,7 +67,7 @@ function clear() {
     const context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
     console.clear();
-    document.getElementById("hey").innerHTML = "";
+    document.getElementById("hey").innerHTML = `G21 G40 <br>M03 S500<br>M06 T01<br>G00 Z${zmax} F70<br>`;
     console.clear();
 }
 
@@ -92,6 +98,10 @@ function draw() {
     ctx.lineWidth = y;
     ctx.stroke();
     ctx.closePath();
+    ctx.beginPath();
+    ctx.fillStyle = x;
+    ctx.arc(currX, currY, y/2, 0, y * Math.PI);
+    ctx.fill();
 }
 
 function findxy(res, e) {
@@ -101,18 +111,18 @@ function findxy(res, e) {
         currX = e.clientX - canvas.offsetLeft;
         currY = e.clientY - canvas.offsetTop;
 
-        makecode("G00 X" + currX + " Y" + (400 - currY));
+        makecode("G00 X" + (currX*ssize/canvas.height-origx) + " Y" + ((canvas.height - currY)*ssize/canvas.height-origy));
         flag = true;
         dot_flag = true;
         if (dot_flag) {
             ctx.beginPath();
             ctx.fillStyle = x;
-            ctx.arc(currX, currY, 1, 0, 2 * Math.PI);
+            ctx.arc(currX, currY, y/2, 0, y * Math.PI);
             ctx.fill();
             dot_flag = false;
         }
 
-        makecode("G01 X" + currX + " Y" + (400 - currY) + " Z-10");
+        makecode("G01 X" + (currX*ssize/canvas.height-origx) + " Y" + ((canvas.height - currY)*ssize/canvas.height-origy) + " Z"+zdepth);
     }
     if (res == "up" || res == "out") {
         //alert("adljnladcn")
@@ -120,7 +130,7 @@ function findxy(res, e) {
             prevX = currX;
             prevY = currY;
 
-            makecode("G01 X" + currX + " Y" + (400 - currY) + " Z5");
+            makecode("G01 X" + (currX*ssize/canvas.height-origx) + " Y" + ((canvas.height - currY)*ssize/canvas.height-origy) + " Z"+ zmax);
         }
         flag = false;
     }
@@ -133,7 +143,7 @@ function findxy(res, e) {
             if (!(prevX === currX && prevY === currY)) {
                 draw();
 
-                makecode("G01 X" + currX + " Y" + (400 - currY));
+                makecode("G01 X" + (currX*ssize/canvas.height-origx) + " Y" + ((canvas.height - currY)*ssize/canvas.height-origy));
             }
         }
     }
@@ -157,7 +167,12 @@ function letsgo() {
     //document.getElementById("drawing-page").style.display = "block";
 }
 function letsdraw() {
+    ssize=Number(document.getElementById("side").value);
+    origx=Number(document.getElementById("origx").value);
+    origy=Number(document.getElementById("origy").value);
+    y=Number(document.getElementById("dia").value)*canvas.height/Number(document.getElementById("side").value);
+    document.getElementById("hey").innerHTML = `G21 G40 <br>M03 S500<br>M06 T01<br>G00 Z${zmax} F70<br>`;
     document.getElementById("config").style.display = "none";
-    //document.getElementById("config").style.display = "block";
     document.getElementById("drawing-page").style.display = "block";
+    
 }
