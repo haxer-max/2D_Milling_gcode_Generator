@@ -81,14 +81,6 @@ function draw() {
 }
 
 
-
-/* function save() {
-    document.getElementById("canvasimg").style.border = "2px solid";
-    var dataURL = canvas.toDataURL();
-    document.getElementById("canvasimg").src = dataURL;
-    document.getElementById("canvasimg").style.display = "inline";
-} */
-
 function findxy(res, e) {
     if (res == 'down') {
         
@@ -157,4 +149,11 @@ function findxy(res, e) {
         }
         
     }
+}
+
+
+function letsgo(){
+    document.getElementById("fly-in").style.display = "none";
+    //document.getElementById("config").style.display = "block";
+    document.getElementById("drawing-page").style.display = "block";
 }

@@ -1,0 +1,24 @@
+th, td {
+    padding: 15px;
+    text-align: center;
+    font-size: large;
+    font-family: cursive;
+  }
+
+.subs{
+    font-size: medium;
+}
+input[type="range"] {
+    width:480px;
+}
+
+#landing{
+   // display: block;
+}
+#calculation{
+    display: none;
+}
+#chartdiv{
+    width:520px;
+    height: 400px;
+ }
