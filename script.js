@@ -8,8 +8,8 @@ let canvas,
     dot_flag = false,
     zmax = 5,
     zdepth = -5
-    origx=0,
-    origy=0;
+    origx=250,
+    origy=250;
     ssize=500;
 
 const coordlist = [];
@@ -169,6 +169,21 @@ function letsdraw() {
     ssize=Number(document.getElementById("side").value);
     origx=Number(document.getElementById("origx").value);
     origy=Number(document.getElementById("origy").value);
+    ctx.beginPath();
+    ctx.moveTo(origx*canvas.height/ssize,0);
+    ctx.lineTo(origx*canvas.height/ssize,canvas.height);
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.closePath();
+    ctx.beginPath();
+    ctx.moveTo(0,(canvas.height-origy)*canvas.height/ssize);
+    ctx.lineTo(canvas.height,(canvas.height-origy)*canvas.height/ssize);
+    ctx.strokeStyle = "green";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.closePath();
+    ;
     y=Number(document.getElementById("dia").value)*canvas.height/Number(document.getElementById("side").value);
     document.getElementById("hey").innerHTML = `G21 G40 <br>M03 S500<br>M06 T01<br>G00 Z${zmax} F70<br>`;
     document.getElementById("config").style.display = "none";
