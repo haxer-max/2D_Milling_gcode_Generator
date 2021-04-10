@@ -192,8 +192,8 @@ function letsdraw() {
     ctx.stroke();
     ctx.closePath();
     ctx.beginPath();
-    ctx.moveTo(0,(canvas.height-origy)*canvas.height/ssize);
-    ctx.lineTo(canvas.height,(canvas.height-origy)*canvas.height/ssize);
+    ctx.moveTo(0,(canvas.height-origy*canvas.height/ssize));
+    ctx.lineTo(canvas.height,(canvas.height-origy*canvas.height/ssize));
     ctx.strokeStyle = "green";
     ctx.lineWidth = 1;
     ctx.stroke();
