@@ -7,7 +7,7 @@ let canvas,
     currY = 0,
     dot_flag = false,
     zmax = 5,
-    zdepth = -5
+    zdepth = -10
     origx=250,
     origy=250;
     ssize=500;
@@ -51,6 +51,7 @@ function init() {
         false
     );
 
+
     document.getElementById("clr").addEventListener("click", clear);
 
     document.getElementById("btn").addEventListener("click", function () {
@@ -69,6 +70,20 @@ function clear() {
     console.clear();
     document.getElementById("hey").innerHTML = `G21 G40 <br>M03 S500<br>M06 T01<br>G00 Z${zmax} F70<br>`;
     console.clear();
+    ctx.beginPath();
+    ctx.moveTo(origx*canvas.height/ssize,0);
+    ctx.lineTo(origx*canvas.height/ssize,canvas.height);
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.closePath();
+    ctx.beginPath();
+    ctx.moveTo(0,(canvas.height-origy)*canvas.height/ssize);
+    ctx.lineTo(canvas.height,(canvas.height-origy)*canvas.height/ssize);
+    ctx.strokeStyle = "green";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.closePath();
 }
 
 function download(blob, name) {
@@ -183,10 +198,16 @@ function letsdraw() {
     ctx.lineWidth = 1;
     ctx.stroke();
     ctx.closePath();
-    ;
+
     y=Number(document.getElementById("dia").value)*canvas.height/Number(document.getElementById("side").value);
+    zmax=Number(document.getElementById("zmax").value);
+        
     document.getElementById("hey").innerHTML = `G21 G40 <br>M03 S500<br>M06 T01<br>G00 Z${zmax} F70<br>`;
     document.getElementById("config").style.display = "none";
     document.getElementById("drawing-page").style.display = "block";
     
+}
+
+function updatezdepth(){
+    zdepth=Number(document.getElementById("zdepth").value);
 }
